@@ -28,8 +28,14 @@ public class UserAuthHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof FullHttpRequest) {
+            /**
+             * 处理HTTP请求
+             */
             handleHttpRequest(ctx, (FullHttpRequest) msg);
         } else if (msg instanceof WebSocketFrame) {
+            /**
+             * 处理WebSocket请求
+             */
             handleWebSocket(ctx, (WebSocketFrame) msg);
         }
     }
