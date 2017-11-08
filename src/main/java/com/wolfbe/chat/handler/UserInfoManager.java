@@ -92,6 +92,10 @@ public class UserInfoManager {
         if (!BlankUtil.isBlank(message)) {
             try {
                 rwLock.readLock().lock();
+                /**
+                 * 获取每一个Channel对应的用户信息，然后像每一个Channel对应的用户
+                 * 发送消息
+                 */
                 Set<Channel> keySet = userInfos.keySet();
                 for (Channel ch : keySet) {
                     UserInfo userInfo = userInfos.get(ch);
@@ -111,6 +115,10 @@ public class UserInfoManager {
         try {
             rwLock.readLock().lock();
             Set<Channel> keySet = userInfos.keySet();
+            /**
+             * 获取每一个Channel对应的用户信息，然后像每一个Channel对应的用户
+             * 发送消息
+             */
             for (Channel ch : keySet) {
                 UserInfo userInfo = userInfos.get(ch);
                 if (userInfo == null || !userInfo.isAuth()) continue;
