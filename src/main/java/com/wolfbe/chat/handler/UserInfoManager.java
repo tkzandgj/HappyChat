@@ -121,10 +121,17 @@ public class UserInfoManager {
         }
     }
 
+    /**
+     * 定时像所有的客户端发送ping消息
+     */
     public static void broadCastPing() {
         try {
             rwLock.readLock().lock();
             logger.info("broadCastPing userCount: {}", userCount.intValue());
+            /**
+             * 获取每一个channel上对应的用户信息，然后遍历给每一个用户
+             * 发送消息，定时像每一个用户发送ping消息，看用户是否存在
+             */
             Set<Channel> keySet = userInfos.keySet();
             for (Channel ch : keySet) {
                 UserInfo userInfo = userInfos.get(ch);
