@@ -28,6 +28,11 @@ public class MessageHandler extends SimpleChannelInboundHandler<TextWebSocketFra
         }
     }
 
+    /**
+     * Channel已经被创建，但是还没有注册到EventLoop上的时候调用
+     * @param ctx
+     * @throws Exception
+     */
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         UserInfoManager.removeChannel(ctx.channel());
